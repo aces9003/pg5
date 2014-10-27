@@ -30,7 +30,7 @@ void displayContact();
 
 // With vectors, must implement alphabetical sort
 void sortContacts(); // called after each addContactToFull();
-void swapFavorites(); // 'rearranges' favorites (just swaps 2 around)
+void swapFavorites(int, int); // 'rearranges' favorites (just swaps 2 around)
 
 // Contact methods
 bool addContactToFull(string, bool);
