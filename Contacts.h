@@ -41,4 +41,7 @@ bool deleteContact();   // Returns true/false if contact was deleted successfull
 void addPhoneNumberPair(int, string);
 void deletePhoneNumberPair(int, string);
 
+// Simulates clear screen
+void clearScreen();
+
 #endif /* defined(__pg5__Contacts__) */
