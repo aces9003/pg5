@@ -30,12 +30,14 @@ void displayContact();
 
 // With vectors, must implement alphabetical sort
 void sortContacts(); // called after each addContactToFull();
-void swapFavorites(); // 'rearranges' favorites (just swaps 2 around)
+void swapFavorites(); // 'rearranges' favorites (just moves a favorite to a new position)
 
 // Contact methods
+// Return true/false if process was completed succesfully
 bool addContactToFull(string, bool);
-bool addContactToFav();
-bool deleteContact();   // Returns true/false if contact was deleted successfully
+bool addContactToFavs();
+bool deleteContactFromFull();   // This method should delete from full (and from favorites if contact is also in favorites
+bool deleteContactFromFavs();   // This method deletes solely from favorites
 
 // Map methods (Phone Number Pair)
 void addPhoneNumberPair(int, string);
