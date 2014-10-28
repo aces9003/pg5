@@ -12,7 +12,6 @@
 #include <stdio.h>
 #include <string>
 #include <iostream>
-#include <vector>
 #include <map>
 
 using std::string;
@@ -22,14 +21,14 @@ typedef struct {
     string firstName;
     string lastName;
     bool isFav;
-    map<int, string> phoneNumberPairs;
+    map<string, string> phoneNumberPairs;
 } Contact;
 
 // Vector methods
 void displayAll();
 void displayFavs();
 void displayContact(int);   // Parameter specifies index in vector
-void displayPhoneNumberPair(int, int);  // First parameter specifies vector index, second specifies map index
+void displayPhoneNumberPair(int, int);  //
 
 // With vectors, must implement alphabetical sort
 void sortContacts(); // called after each addContactToFull();
@@ -37,16 +36,13 @@ void rearrangeFavorite(int, int); // 'rearranges' favorites (just moves a favori
 
 // Contact methods
 // Return true/false if process was completed succesfully
-bool addContactToFull(string, string, bool);    // Runs addPhoneNumberPair() n times within
+bool addContactToFull(string, bool);    // Runs addPhoneNumberPair() n times within
 bool addContactToFavs(int);
 bool deleteContactFromFull(int);   // This method should delete from full (and from favorites if contact is also in favorites)
 bool deleteContactFromFavs(int);   // This method deletes solely from favorites
 
 // Map methods (Phone Number Pair)
-void addPhoneNumberPair(int, int, string);
-void deletePhoneNumberPair(int, int);
-
-// Simulates clear screen
-void clearScreen();
+void addPhoneNumberPair(int, string, string);
+void deletePhoneNumberPair(int, string);
 
 #endif /* defined(__pg5__Contacts__) */
