@@ -12,6 +12,7 @@
 #include <stdio.h>
 #include <string>
 #include <iostream>
+#include <vector>
 #include <map>
 
 using std::string;
@@ -28,7 +29,7 @@ typedef struct {
 void displayAll();
 void displayFavs();
 void displayContact(int);   // Parameter specifies index in vector
-void displayPhoneNumberPair(int, int);  //
+void displayPhoneNumberPair(int);  //
 
 // With vectors, must implement alphabetical sort
 void sortContacts(); // called after each addContactToFull();
@@ -36,14 +37,14 @@ void rearrangeFavorite(int, int); // 'rearranges' favorites (just moves a favori
 
 // Contact methods
 // Return true/false if process was completed succesfully
-bool addContactToFull(string, bool);    // Runs addPhoneNumberPair() n times within
+bool addContactToFull(string, string, bool);    // Runs addPhoneNumberPair() n times within
 bool addContactToFavs(int);
 bool deleteContactFromFull(int);   // This method should delete from full (and from favorites if contact is also in favorites)
 bool deleteContactFromFavs(int);   // This method deletes solely from favorites
 
 // Map methods (Phone Number Pair)
-void addPhoneNumberPair(int, string);
-void deletePhoneNumberPair(int);
+void addPhoneNumberPair(int, int, string);
+void deletePhoneNumberPair(int, int);
 
 // Simulates clear screen
 void clearScreen();

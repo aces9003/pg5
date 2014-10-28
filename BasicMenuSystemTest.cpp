@@ -2,16 +2,19 @@
 #include <stdio.h>
 #include <string>
 #include <cstdlib>
+#include <vector>
+#include "Contacts.h"
 
-using std::string;
-using std::istream;
-using std::ostream;
+using std::string;      using std::vector;
+using std::istream;     using std::map;
+using std::ostream;     using std::iterator;
 using std::cout;
 using std::cin;
 using std::endl;
 using std::getline;
 
-void clearScreen(); // Mimcs clear screen by printing out many lines
+vector<Contact> contacts;
+vector<Contact*> favorites;
 
 //int main(int argc, char *argv[]) {
 int main() {
