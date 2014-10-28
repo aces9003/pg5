@@ -56,6 +56,102 @@ int main() {
         switch (singleCharInput) {
             case '1':
                 // First display contacts, names and indexes only
+                clearScreen();
+                
+                char editContactsList;
+                cout << "::Contacts List::\n\n"
+                << " [X] contact name\n"
+                << " [X] contact name\n"
+                << " [X] contact name\n"
+                << " [X] contact name\n"
+                << " [X] contact name\n"
+                << "=============================================\n\n"
+                << "::Edit Contacts List::\n\n"
+                << " 1) Add New Contact\n"
+                << " 2) Edit Existing Contact\n"
+                << " 3) Return to Main Menu\n\n"
+                << "Selection: ";
+                cin >> editContactsList;
+                cout << endl;
+                
+                if (editContactsList > '4' || editContactsList < '1') {
+                    cout << "Invalid Input Entered\n\n";
+                    system( "read -n 1 -s -p \"Press any key to return to the previous menu...\"" );
+                    singleCharInput = '1';
+                    clearScreen();
+                    goto startSwitch;
+                } else if (editContactsList == '1') {
+                    // Prompt user for data to create a new contact and add it to the full contacts list
+                    clearScreen();
+                    
+                    string newFirstName;
+                    string newLastName;
+                    char setIsFav;
+                    string newPNString;  // Convert to int and store in newPhoneNumberInt
+                    int newPNInt;
+                    string newPhoneType;
+                    char continueAddingNewPNPairs;
+                    
+                    std::string::size_type sz;   // alias of size_t
+                    
+                    // Prompt for new contact's info
+                    cout << "First name of new contact:  ";
+                    cin >> newFirstName;
+                    
+                    cout << "Last name of new contact:  ";
+                    cin >> newLastName;
+
+                    cout << "Is contact a favorite? (y/n):  ";
+                    cin >> setIsFav;
+                    
+                    moreNewPNPairs: // Execution jumps here if user wants to add more PN pairs to new contact
+                    newPNString.clear();
+                    newPhoneType.clear();
+                    
+                    cout << "Contact's phone number: ";
+                    cin >> newPNString;
+                    newPNInt = stoi(newPNString, &sz);   // Converts phone number into int
+                    cout << newPNInt << endl;
+                    
+                    cout << "Phone number type (for example, CELL, HOME, WORK, FAX, etc.): ";
+                    cin >> newPhoneType;
+                    
+                    cout << "Continue adding phone number pairs? (y/n): ";
+                    cin >> continueAddingNewPNPairs;
+                    
+                    if (tolower(continueAddingNewPNPairs) == 'y') {
+                        goto moreNewPNPairs;
+                    }
+                    
+                    // store index and pass to method below
+                    // addContactToFavs();
+                    cout << "Done.\n";
+                    system( "read -n 1 -s -p \"Press any key to return to the main menu...\"" );
+                    clearScreen();
+                } else if (editContactsList == '2') {
+                    // Delete contact from favorites
+                    char deleteContactFromFavsChar;
+                    int deleteContactFromFavsInt;
+                    
+                    cout << "Which contact do you wish to delete from your favorites list?:  ";
+                    cin >> deleteContactFromFavsChar;
+                    deleteContactFromFavsInt = deleteContactFromFavsChar - '0';
+                    printf ("Deleting contact at [%d] from favs...\n", deleteContactFromFavsInt);
+                    // store name OR index and pass to method below
+                    // deleteContactFromFavs();
+                    cout << "Done.\n";
+                    system( "read -n 1 -s -p \"Press any key to return to the main menu...\"" );
+                    clearScreen();
+                } else if (editContactsList == '3') {
+                    clearScreen();
+                    goto startMainMenu;
+                } else {
+                    cout << "Edit favs menu: Invalid Input Entered\n\n";
+                    system( "read -n 1 -s -p \"Press any key to return to the previous menu...\"" );
+                    singleCharInput = '1';
+                    clearScreen();
+                    goto startSwitch;
+                }
                 break;
                 
             case '2':
@@ -174,7 +270,7 @@ int main() {
                 
             case '5':
                 clearScreen();
-                cout << "Thanks for using PhoneList.\n\n";
+                cout << "Thanks for using Matthias and Alex's PhoneList.\n\n";
                 return 0;
                 break;
             
@@ -186,102 +282,7 @@ int main() {
                 break;
             */
         }
-        
-        // Old if-statement structure:
-        /*
-		if (mainMenuInput > '5' || mainMenuInput < '1') { // Validates user input
-			//system("CLS"); // Clears screen
-			//cout << "Invalid Input Entered\n\n";
-			//system("PAUSE"); // Pauses until any key pressed
-			//system("CLS");
-			//clearScreen();
-			cout << "Invalid Input Entered\n\n";
-			system( "read -n 1 -s -p \"Press any key to return to the main menu...\"" );
-			clearScreen();
-		} else if (mainMenuInput == '1') {
-            // First display contacts, names and indexes only
-		} else if (mainMenuInput == '2') {
-            // First display favorites, names and indexes only
-            clearScreen();
-            
-            char editFavsList;
-            cout << "**All favorites + indexes (no number pairs)**\n\n"
-                 << " 1) Add Contact to Favorites\n"
-                 << " 2) Delete Contact from Favorites\n"
-                 << " 3) Rearrange Favorites\n"
-                 << " 4) Exit PhoneList\n\n"
-                 << "Selection: ";
-            cin >> editFavsList;
-            cout << endl;
-            
-            if (editFavsList > '4' || editFavsList < '1') {
-                cout << "Invalid Input Entered\n\n";
-                system( "read -n 1 -s -p \"Press any key to return to the main menu...\"" );
-            } else if (editFavsList == '1') {
-                // Add contact from full list to favorites
-                // Print full contacts, names and indexes only
-                cout << "**prompt for index or name: << **\n\n";
-                // store name OR index and pass to method below
-                // addContactToFav();
-                // print possible success message: Done.
-                //system( "read -n 1 -s -p \"Press any key to return to the main menu...\"" );
-                break;
-                mainMenuInput = '2';
-                //clearScreen();
-            } else if (editFavsList == '2') {
-                // Delete contact from favorites
-                cout << "**prompt for index or name: << **\n\n";
-                // store name OR index and pass to method below
-                // deleteContactFromFavs();
-                // print possible success message: Done.
-                system( "read -n 1 -s -p \"Press any key to return to the main menu...\"" );
-                clearScreen();
-            } else if (editFavsList == '3') {
-                // Rearrange favorites
-                cout << "**prompt for contact's current index: << **\n";
-                // store current index --> pass to swapFavorites()
-                cout << "**promt for desired index: << **\n\n";
-                // store desired index --> pass to swapFavorites()
-                // swapFavorites(dest, orig);
-                // print possible success message: Done.
-                system( "read -n 1 -s -p \"Press any key to return to the main menu...\"" );
-                clearScreen();
-            } else if (mainMenuInput == '4') {
-                clearScreen();
-                cout << "Thanks for using PhoneList.\n\n";
-                mainMenuInput = '5';
-            } else {
-                cout << "Invalid Input Entered\n\n";
-                system( "read -n 1 -s -p \"Press any key to return to the main menu...\"" );
-                mainMenuInput = '5';
-                clearScreen();
-            }
-            
-            
-		} else if (mainMenuInput == '3') {
-			// Display all contacts with number pairs
-            clearScreen();
-            cout << "**All contacts + number pairs go here**\n\n";
-            // displayAll();
-            system( "read -n 1 -s -p \"Press any key to return to Main Menu...\"" );
-            clearScreen();
-		} else if (mainMenuInput == '4') {
-            // Display all favorites with number pairs
-            clearScreen();
-            cout << "**All favorites + number pairs go here**\n\n";
-            // dispalyFavs();
-            system( "read -n 1 -s -p \"Press any key to return to Main Menu...\"" );
-            clearScreen();
-        } else if (mainMenuInput == '5') {
-            clearScreen();
-            cout << "Thanks for using PhoneList.\n\n";
-            return 0;
-		} else {
-			cout << "Invalid Input Entered\n\n";
-            system( "read -n 1 -s -p \"Press any key to return to the main menu...\"" );
-			clearScreen();
-		}
-        */
+
     }
 }
 
