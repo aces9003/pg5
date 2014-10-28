@@ -22,9 +22,8 @@ int main() {
     //string mainMenuInput;
     //mainMenuInput.clear();
     while(true) {
-        string mainMenuInput;
-        
         startMainMenu:
+        string mainMenuInput;
         mainMenuInput.clear();
         char singleCharInput = '\0';
         
@@ -64,7 +63,10 @@ int main() {
                 clearScreen();
                 
                 char editFavsList;
-                cout << "**All favorites + indexes (no number pairs)**\n"
+                cout << "::Favorites List::\n\n"
+                     << " [X] favorite name\n"
+                     << " [X] favorite name\n"
+                     << " [X] favorite name\n"
                      << "=============================================\n\n"
                      << "::Edit Favorites List::\n\n"
                      << " 1) Add Contact to Favorites\n"
@@ -84,28 +86,58 @@ int main() {
                 } else if (editFavsList == '1') {
                     // Add contact from full list to favorites
                     // Print full contacts, names and indexes only
-                    cout << "**prompt for index or name: << **\n\n";
-                    // store name OR index and pass to method below
-                    // addContactToFav();
-                    // print possible success message: Done.
+                    char addContactToFavsChar;
+                    int addContactToFavsInt;
+                    
+                    // PRINT ALL CONTACTS THAT HAVE isFav == false;
+                    cout << "::Contacts Not in Favorites::\n\n"
+                         << " [X] contact name\n"
+                         << " [X] contact name\n"
+                         << " [X] contact name\n"
+                         << " [X] contact name\n"
+                         << " [X] contact name\n"
+                    << endl;
+                    cout << "Which contact do you wish to add to your favorites list?:  ";
+                    cin >> addContactToFavsChar;
+                    addContactToFavsInt = addContactToFavsChar - '0';
+                    printf ("Adding contact at [%d] to favs...\n", addContactToFavsInt);
+                    // store index and pass to method below
+                    // addContactToFavs();
+                    cout << "Done.\n";
                     system( "read -n 1 -s -p \"Press any key to return to the main menu...\"" );
                     clearScreen();
                 } else if (editFavsList == '2') {
                     // Delete contact from favorites
-                    cout << "**prompt for index or name: << **\n\n";
+                    char deleteContactFromFavsChar;
+                    int deleteContactFromFavsInt;
+                    
+                    cout << "Which contact do you wish to delete from your favorites list?:  ";
+                    cin >> deleteContactFromFavsChar;
+                    deleteContactFromFavsInt = deleteContactFromFavsChar - '0';
+                    printf ("Deleting contact at [%d] from favs...\n", deleteContactFromFavsInt);
                     // store name OR index and pass to method below
                     // deleteContactFromFavs();
-                    // print possible success message: Done.
+                    cout << "Done.\n";
                     system( "read -n 1 -s -p \"Press any key to return to the main menu...\"" );
                     clearScreen();
                 } else if (editFavsList == '3') {
                     // Rearrange favorites
-                    cout << "**prompt for contact's current index: << **\n";
-                    // store current index --> pass to swapFavorites()
-                    cout << "**promt for desired index: << **\n\n";
-                    // store desired index --> pass to swapFavorites()
-                    // swapFavorites(dest, orig);
+                    char origIndexChar, destIndexChar;
+                    int origIndexInt, destIndexInt;
+                    
+                    cout << "What is the favorite's current index?: ";
+                    cin >> origIndexChar;
+                    origIndexInt = origIndexChar - '0';
+                    
+                    cout << "What is the favorite's desired index?: ";
+                    cin >> destIndexChar;
+                    destIndexInt = destIndexChar - '0';
+                    
+                    printf ("Moving favorite from [%d] to [%d]...\n", origIndexInt, destIndexInt);
+                    // store both ints and pass to rearrangeFavorite()
+                    // rearrangeFavorites(dest, orig);
                     // print possible success message: Done.
+                    cout << "Done.\n";
                     system( "read -n 1 -s -p \"Press any key to return to the main menu...\"" );
                     clearScreen();
                 } else if (editFavsList == '4') {
