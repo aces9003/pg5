@@ -12,6 +12,7 @@
 #include <stdio.h>
 #include <string>
 #include <iostream>
+#include <vector>
 #include <map>
 
 using std::string;
@@ -42,8 +43,8 @@ bool deleteContactFromFull(int);   // This method should delete from full (and f
 bool deleteContactFromFavs(int);   // This method deletes solely from favorites
 
 // Map methods (Phone Number Pair)
-void addPhoneNumberPair(int, string);
-void deletePhoneNumberPair(int);
+void addPhoneNumberPair(int, int, string);
+void deletePhoneNumberPair(int, int);
 
 // Simulates clear screen
 void clearScreen();
