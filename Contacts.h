@@ -18,7 +18,8 @@ using std::string;
 using std::map;
 
 typedef struct {
-    string name;
+    string firstName;
+    string lastName;
     bool isFav;
     map<int, string> phoneNumberPairs;
 } Contact;
@@ -31,11 +32,7 @@ void displayPhoneNumberPair(int, int);  //
 
 // With vectors, must implement alphabetical sort
 void sortContacts(); // called after each addContactToFull();
-<<<<<<< HEAD
 void rearrangeFavorite(int, int); // 'rearranges' favorites (just moves a favorite to a new position)
-=======
-void swapFavorites(int, int); // 'rearranges' favorites (just swaps 2 around)
->>>>>>> pr/1
 
 // Contact methods
 // Return true/false if process was completed succesfully
