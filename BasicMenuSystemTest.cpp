@@ -1,18 +1,32 @@
 #include <iostream>
+#include <stdio.h>
+#include <string>
 #include <cstdlib>
+
+using std::string;
+using std::istream;
+using std::ostream;
+using std::cout;
+using std::cin;
+using std::endl;
+using std::getline;
 
 void clearScreen(); // Mimcs clear screen by printing out many lines
 
-using namespace std;
 //int main(int argc, char *argv[]) {
 int main() {
 	
 	clearScreen();
-	
-    startMainMenu:
+    
+    //startMainMenu:
+    //string mainMenuInput;
+    //mainMenuInput.clear();
     while(true) {
-        char mainMenuChoice;
-        // char name[x];
+        string mainMenuInput;
+        
+        startMainMenu:
+        mainMenuInput.clear();
+        char singleCharInput = '\0';
         
         cout << "::Main Menu::PhoneList\n\n"
              << " 1) Edit Contacts List\n"
@@ -21,11 +35,26 @@ int main() {
              << " 4) Display Favorites\n"
              << " 5) Exit PhoneList\n\n"
              << "Selection: ";
-        cin >> mainMenuChoice;
+        //cin >> singleCharInput;
+        getline(cin, mainMenuInput);
+        //singleCharInput = cin.get();
+        
+        // Check to make sure only one character was input by user
+        //if (mainMenuInput.length() > 1 || mainMenuInput[0] > '5' || mainMenuInput[0] < '1') {
+        if (mainMenuInput.length() > 1) {
+            clearScreen();
+            cout << "too long Invalid Input Entered\n\n";
+            system( "read -n 1 -s -p \"Press any key to return to the main menu...\"" );
+            clearScreen();
+            goto startMainMenu;
+        } else {
+            singleCharInput = mainMenuInput[0];
+        }
+
         clearScreen();
         
         startSwitch:
-        switch (mainMenuChoice) {
+        switch (singleCharInput) {
             case '1':
                 // First display contacts, names and indexes only
                 break;
@@ -49,7 +78,7 @@ int main() {
                 if (editFavsList > '4' || editFavsList < '1') {
                     cout << "Invalid Input Entered\n\n";
                     system( "read -n 1 -s -p \"Press any key to return to the previous menu...\"" );
-                    mainMenuChoice = '2';
+                    singleCharInput = '2';
                     clearScreen();
                     goto startSwitch;
                 } else if (editFavsList == '1') {
@@ -83,9 +112,9 @@ int main() {
                     clearScreen();
                     goto startMainMenu;
                 } else {
-                    cout << "Invalid Input Entered\n\n";
+                    cout << "Edit favs menu: Invalid Input Entered\n\n";
                     system( "read -n 1 -s -p \"Press any key to return to the previous menu...\"" );
-                    mainMenuChoice = '2';
+                    singleCharInput = '2';
                     clearScreen();
                     goto startSwitch;
                 }
@@ -116,17 +145,19 @@ int main() {
                 cout << "Thanks for using PhoneList.\n\n";
                 return 0;
                 break;
-                
+            
+            /*
             default:
-                cout << "Invalid Input Entered\n\n";
+                cout << "main 1<input<5: Invalid Input Entered\n\n";
                 system( "read -n 1 -s -p \"Press any key to return to the main menu...\"" );
                 clearScreen();
                 break;
+            */
         }
         
         // Old if-statement structure:
         /*
-		if (mainMenuChoice > '5' || mainMenuChoice < '1') { // Validates user input
+		if (mainMenuInput > '5' || mainMenuInput < '1') { // Validates user input
 			//system("CLS"); // Clears screen
 			//cout << "Invalid Input Entered\n\n";
 			//system("PAUSE"); // Pauses until any key pressed
@@ -135,9 +166,9 @@ int main() {
 			cout << "Invalid Input Entered\n\n";
 			system( "read -n 1 -s -p \"Press any key to return to the main menu...\"" );
 			clearScreen();
-		} else if (mainMenuChoice == '1') {
+		} else if (mainMenuInput == '1') {
             // First display contacts, names and indexes only
-		} else if (mainMenuChoice == '2') {
+		} else if (mainMenuInput == '2') {
             // First display favorites, names and indexes only
             clearScreen();
             
@@ -163,7 +194,7 @@ int main() {
                 // print possible success message: Done.
                 //system( "read -n 1 -s -p \"Press any key to return to the main menu...\"" );
                 break;
-                mainMenuChoice = '2';
+                mainMenuInput = '2';
                 //clearScreen();
             } else if (editFavsList == '2') {
                 // Delete contact from favorites
@@ -183,33 +214,33 @@ int main() {
                 // print possible success message: Done.
                 system( "read -n 1 -s -p \"Press any key to return to the main menu...\"" );
                 clearScreen();
-            } else if (mainMenuChoice == '4') {
+            } else if (mainMenuInput == '4') {
                 clearScreen();
                 cout << "Thanks for using PhoneList.\n\n";
-                mainMenuChoice = '5';
+                mainMenuInput = '5';
             } else {
                 cout << "Invalid Input Entered\n\n";
                 system( "read -n 1 -s -p \"Press any key to return to the main menu...\"" );
-                mainMenuChoice = '5';
+                mainMenuInput = '5';
                 clearScreen();
             }
             
             
-		} else if (mainMenuChoice == '3') {
+		} else if (mainMenuInput == '3') {
 			// Display all contacts with number pairs
             clearScreen();
             cout << "**All contacts + number pairs go here**\n\n";
             // displayAll();
             system( "read -n 1 -s -p \"Press any key to return to Main Menu...\"" );
             clearScreen();
-		} else if (mainMenuChoice == '4') {
+		} else if (mainMenuInput == '4') {
             // Display all favorites with number pairs
             clearScreen();
             cout << "**All favorites + number pairs go here**\n\n";
             // dispalyFavs();
             system( "read -n 1 -s -p \"Press any key to return to Main Menu...\"" );
             clearScreen();
-        } else if (mainMenuChoice == '5') {
+        } else if (mainMenuInput == '5') {
             clearScreen();
             cout << "Thanks for using PhoneList.\n\n";
             return 0;
