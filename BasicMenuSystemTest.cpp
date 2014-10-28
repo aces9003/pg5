@@ -17,7 +17,9 @@ void clearScreen(); // Mimcs clear screen by printing out many lines
 //int main(int argc, char *argv[]) {
 int main() {
 	
-	clearScreen();
+	//system("clear");
+    
+    system("clear");
     
     //startMainMenu:
     //string mainMenuInput;
@@ -42,22 +44,22 @@ int main() {
         // Check to make sure only one character was input by user
         //if (mainMenuInput.length() > 1 || mainMenuInput[0] > '5' || mainMenuInput[0] < '1') {
         if (mainMenuInput.length() > 1) {
-            clearScreen();
+            system("clear");
             cout << "too long Invalid Input Entered\n\n";
             system( "read -n 1 -s -p \"Press any key to return to the main menu...\"" );
-            clearScreen();
+            system("clear");
             goto startMainMenu;
         } else {
             singleCharInput = mainMenuInput[0];
         }
 
-        clearScreen();
+        system("clear");
         
         startSwitch:
         switch (singleCharInput) {
             case '1':
                 // First display contacts, names and indexes only
-                clearScreen();
+                system("clear");
                 
                 char editContactsList;
                 cout << "::Contacts List::\n\n"
@@ -79,11 +81,11 @@ int main() {
                     cout << "Invalid Input Entered\n\n";
                     system( "read -n 1 -s -p \"Press any key to return to the previous menu...\"" );
                     singleCharInput = '1';
-                    clearScreen();
+                    system("clear");
                     goto startSwitch;
                 } else if (editContactsList == '1') {
                     // Prompt user for data to create a new contact and add it to the full contacts list
-                    clearScreen();
+                    system("clear");
                     
                     string newFirstName;
                     string newLastName;
@@ -132,7 +134,7 @@ int main() {
                     // addContactToFavs();
                     cout << "Done.\n";
                     system( "read -n 1 -s -p \"Press any key to return to the main menu...\"" );
-                    clearScreen();
+                    system("clear");
                 } else if (editContactsList == '2') {
                     // Delete contact from favorites
                     char deleteContactFromFavsChar;
@@ -146,22 +148,22 @@ int main() {
                     // deleteContactFromFavs();
                     cout << "Done.\n";
                     system( "read -n 1 -s -p \"Press any key to return to the main menu...\"" );
-                    clearScreen();
+                    system("clear");
                 } else if (editContactsList == '3') {
-                    clearScreen();
+                    system("clear");
                     goto startMainMenu;
                 } else {
                     cout << "Edit contacts menu: Invalid Input Entered\n\n";
                     system( "read -n 1 -s -p \"Press any key to return to the previous menu...\"" );
                     singleCharInput = '1';
-                    clearScreen();
+                    system("clear");
                     goto startSwitch;
                 }
                 break;
                 
             case '2':
                 // First display favorites, names and indexes only
-                clearScreen();
+                system("clear");
                 
                 char editFavsList;
                 cout << "::Favorites List::\n\n"
@@ -182,7 +184,7 @@ int main() {
                     cout << "Invalid Input Entered\n\n";
                     system( "read -n 1 -s -p \"Press any key to return to the previous menu...\"" );
                     singleCharInput = '2';
-                    clearScreen();
+                    system("clear");
                     goto startSwitch;
                 } else if (editFavsList == '1') {
                     // Add contact from full list to favorites
@@ -206,7 +208,7 @@ int main() {
                     // addContactToFavs();
                     cout << "Done.\n";
                     system( "read -n 1 -s -p \"Press any key to return to the main menu...\"" );
-                    clearScreen();
+                    system("clear");
                 } else if (editFavsList == '2') {
                     // Delete contact from favorites
                     char deleteContactFromFavsChar;
@@ -220,7 +222,7 @@ int main() {
                     // deleteContactFromFavs();
                     cout << "Done.\n";
                     system( "read -n 1 -s -p \"Press any key to return to the main menu...\"" );
-                    clearScreen();
+                    system("clear");
                 } else if (editFavsList == '3') {
                     // Rearrange favorites
                     char origIndexChar, destIndexChar;
@@ -240,42 +242,42 @@ int main() {
                     // print possible success message: Done.
                     cout << "Done.\n";
                     system( "read -n 1 -s -p \"Press any key to return to the main menu...\"" );
-                    clearScreen();
+                    system("clear");
                 } else if (editFavsList == '4') {
-                    clearScreen();
+                    system("clear");
                     goto startMainMenu;
                 } else {
                     cout << "Edit favs menu: Invalid Input Entered\n\n";
                     system( "read -n 1 -s -p \"Press any key to return to the previous menu...\"" );
                     singleCharInput = '2';
-                    clearScreen();
+                    system("clear");
                     goto startSwitch;
                 }
                 break;
                 
             case '3':
                 // Display all contacts with number pairs
-                clearScreen();
+                system("clear");
                 cout << "**All contacts + number pairs go here**\n"
                 << "=============================================\n\n";
                 // displayAll();
                 system( "read -n 1 -s -p \"Press any key to return to the main menu...\"" );
-                clearScreen();
+                system("clear");
                 break;
                 
             case '4':
                 // Display all favorites with number pairs
-                clearScreen();
+                system("clear");
                 cout << "**All favorites + number pairs go here**\n"
                 << "=============================================\n\n";
                 // dispalyFavs();
                 system( "read -n 1 -s -p \"Press any key to return to the main menu...\"" );
-                clearScreen();
+                system("clear");
                 break;
                 
             case '5':
-                clearScreen();
-                cout << "Thanks for using Matthias and Alex's PhoneList.\n\n";
+                system("clear");
+                cout << "\nThanks for using Matthias and Alex's PhoneList.\n\n";
                 return 0;
                 break;
             
@@ -283,7 +285,7 @@ int main() {
             default:
                 cout << "main 1<input<5: Invalid Input Entered\n\n";
                 system( "read -n 1 -s -p \"Press any key to return to the main menu...\"" );
-                clearScreen();
+                system("clear");
                 break;
             */
         }
