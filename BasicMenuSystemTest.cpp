@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <string>
 #include <cstdlib>
+#include <sstream>
 
 using std::string;
 using std::istream;
@@ -87,12 +88,11 @@ int main() {
                     string newFirstName;
                     string newLastName;
                     char setIsFav;
-                    string newPNString;  // Convert to int and store in newPhoneNumberInt
-                    int newPNInt;
+                    string newPNString;  // Really no need to convert it to int later...
+                    //long newPNLong;
+                    //int newPNInt;
                     string newPhoneType;
                     char continueAddingNewPNPairs;
-                    
-                    std::string::size_type sz;   // alias of size_t
                     
                     // Prompt for new contact's info
                     cout << "First name of new contact:  ";
@@ -110,8 +110,13 @@ int main() {
                     
                     cout << "Contact's phone number: ";
                     cin >> newPNString;
-                    newPNInt = stoi(newPNString, &sz);   // Converts phone number into int
-                    cout << newPNInt << endl;
+                    //newPNInt = stoi(newPNString, &sz);   // Converts phone number into int
+                    //newPNInt = atoi(newPNString.c_str());
+                    //stringstream ss(newPNString);
+                    //ss >> newPNLong;
+                    //newPNInt = (int)newPNLong;
+                    
+                    cout << newPNString << endl;
                     
                     cout << "Phone number type (for example, CELL, HOME, WORK, FAX, etc.): ";
                     cin >> newPhoneType;
@@ -146,7 +151,7 @@ int main() {
                     clearScreen();
                     goto startMainMenu;
                 } else {
-                    cout << "Edit favs menu: Invalid Input Entered\n\n";
+                    cout << "Edit contacts menu: Invalid Input Entered\n\n";
                     system( "read -n 1 -s -p \"Press any key to return to the previous menu...\"" );
                     singleCharInput = '1';
                     clearScreen();

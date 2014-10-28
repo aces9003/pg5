@@ -61,14 +61,15 @@ void rearrangeFavorites(int ind1, int ind2){
 }
 
 //add name into new contact struct
-bool addContactToFull(string iname, bool fav){
-	Contact nContact = {iname, fav};
+bool addContactToFull(string fname, string lname, bool fav){
+	Contact nContact = {fname, lname, fav};
 	contacts.pushBack(nContact);
 	if (fav){
 		addContactToFav(contacts.size()-1);
 	}
 	return true;
-	//return false when?
+	//return false when
+    // it'll return false if something goes wrong up above, no need to worry about setting condition for returning false
 }
 
 // add contact from vector to favorites based on index
@@ -107,6 +108,7 @@ void addPhoneNumberPair(int num, string type){
 }
 
 // Map methods (Phone Number Pair)
+// I like this way better of deleting by key instead of by index
 void deletePhoneNumberPair(int key){
 	std::map<int,string>::iterator i;
 	i=contacts.phoneNumberPairs.find(key);
