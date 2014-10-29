@@ -19,7 +19,7 @@ vector<Contact*> favorites;
 void displayAll(){
     int index=0;
     for(auto i = contacts.begin(); i != contacts.end(); ++i){
-        cout << "["<< index << "] " << i->firstName << " " << i->lastName << endl;
+        cout << " ["<< index << "] " << '\t' << i->firstName << " " << i->lastName << endl;
         index++;
     }
 }
@@ -42,10 +42,25 @@ void displayPhoneNumberPairs(int cInd){
     }
 }
 
+//cout fav phone number pair based on vector index and int pair index in map
+void displayFavPhoneNumberPairs(int fInd){
+    int index=0;
+    for (auto i = favorites.at(fInd)->phoneNumberPairs.begin(); i != favorites.at(fInd)->phoneNumberPairs.end(); i++) {
+        cout << "["<< index << "] " << i->first << " " << i->second <<endl;
+        index++;
+    }
+}
+
 //cout specific contact based on index
 void displayContact(int ind){
     cout << contacts.at(ind).firstName << " " << contacts.at(ind).lastName << endl;
+    cout << '\t'; displayPhoneNumberPairs(ind);
+}
+
+void displayFavContact(int ind){
+    cout << favorites.at(ind)->firstName << " " << favorites.at(ind)->lastName << endl;
     displayPhoneNumberPairs(ind);
+    cout << '\t'; displayFavPhoneNumberPairs(ind); cout << endl;
 }
 
 //sort contact vector alphabetically
@@ -70,14 +85,13 @@ bool addContactToFav(int ind){
 
 //add name into new contact struct
 bool addContactToFull(string fname, string lname, bool fav){
-    Contact nContact = {fname, lname, fav, *new map<string, string>};
+    Contact nContact = {fname, lname, fav};
     contacts.push_back(nContact);
     if (fav){
-        addContactToFav((int)contacts.size() -1);
+        addContactToFav((int)favorites.size() -1);
     }
     sortContacts();
     return true;
-    //return false when?
 }
 
 // delete contact from vector contacts based on index
