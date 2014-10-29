@@ -28,15 +28,18 @@ typedef struct {
 void displayAll();
 void displayFavs();
 void displayContact(int);   // Parameter specifies index in vector
-void displayPhoneNumberPair(int, int);  //
+void displayFavContact(int);
+void displayPhoneNumberPair(int, int);  // First parameter specifies which contact in vector, second specifies pair in the map
+void displayFavPhoneNumberPairs(int);
 
 // With vectors, must implement alphabetical sort
 void sortContacts(); // called after each addContactToFull();
+bool compFunction(const Contact& a, const Contact& b);   // Comparison function for sort
 void rearrangeFavorite(int, int); // 'rearranges' favorites (just moves a favorite to a new position)
 
 // Contact methods
 // Return true/false if process was completed succesfully
-bool addContactToFull(string, bool);    // Runs addPhoneNumberPair() n times within
+bool addContactToFull(string, string, bool);    // Runs addPhoneNumberPair() n times within
 bool addContactToFavs(int);
 bool deleteContactFromFull(int);   // This method should delete from full (and from favorites if contact is also in favorites)
 bool deleteContactFromFavs(int);   // This method deletes solely from favorites

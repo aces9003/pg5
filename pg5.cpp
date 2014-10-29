@@ -16,11 +16,23 @@ int main(int argc, const char * argv[]) {
     
     Contact newContact;
     
-    newContact.name = "Test Person";
-    newContact.phoneNumberPairs[1234567890] = "CELL";
+    newContact.firstName = "Test";
+    newContact.lastName = "Person";
+    newContact.phoneNumberPairs["1234567890"] = "CELL";
     
-    cout << newContact.name << endl;
-    cout << newContact.phoneNumberPairs[1234567890] << endl;
+    cout << newContact.firstName << " " << newContact.lastName << endl;
+    
+    // Accesses individual key->val pair
+    cout << newContact.phoneNumberPairs["1234567890"] << endl;
+    
+    // Iterate through map using const_iterator and print all key value pairs
+    //for ( std::map< string, string >::const_iterator iter = newContact.phoneNumberPairs.begin(); iter != newContact.phoneNumberPairs.end(); ++iter ) {
+    for (auto iter = newContact.phoneNumberPairs.begin(); iter != newContact.phoneNumberPairs.end(); iter++) {
+        cout << iter->first << '\t' << iter->second << '\n';
+    }
+
+    
+    cout << endl;
     
     return 0;
 }

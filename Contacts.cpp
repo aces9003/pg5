@@ -7,10 +7,11 @@
 //
 
 #include <vector>
+#include <algorithm>
 #include "Contacts.h"
 
 using std::string;	using std::cin;		using std::vector;		using std::endl;
-using std::map;		using std::cout;		using std::iterator;
+using std::map;		using std::cout;	using std::iterator;    using std::sort;
 
 vector<Contact> contacts;
 vector<Contact*> favorites;
@@ -28,7 +29,7 @@ void displayAll(){
 void displayFavs(){
     int index=0;
     for(auto i = favorites.begin(); i != favorites.end(); ++i){
-        cout << "["<< index << "] " << (*i)->firstName << " " << (*i)->lastName << endl;
+        cout << " ["<< index << "] " << '\t' << (*i)->firstName << " " << (*i)->lastName << endl;
         index++;
     }
 }
@@ -37,7 +38,7 @@ void displayFavs(){
 void displayPhoneNumberPairs(int cInd){
     int index=0;
     for (auto i = contacts.at(cInd).phoneNumberPairs.begin(); i != contacts.at(cInd).phoneNumberPairs.end(); i++) {
-        cout << "["<< index << "] " << i->first << " " << i->second <<endl;
+        cout << '\t' << "["<< index << "] " << i->first << " " << i->second << endl;
         index++;
     }
 }
@@ -46,7 +47,7 @@ void displayPhoneNumberPairs(int cInd){
 void displayFavPhoneNumberPairs(int fInd){
     int index=0;
     for (auto i = favorites.at(fInd)->phoneNumberPairs.begin(); i != favorites.at(fInd)->phoneNumberPairs.end(); i++) {
-        cout << "["<< index << "] " << i->first << " " << i->second <<endl;
+        cout << '\t' << "["<< index << "] " << i->first << " " << i->second << endl;
         index++;
     }
 }
@@ -54,30 +55,55 @@ void displayFavPhoneNumberPairs(int fInd){
 //cout specific contact based on index
 void displayContact(int ind){
     cout << contacts.at(ind).firstName << " " << contacts.at(ind).lastName << endl;
-    cout << '\t'; displayPhoneNumberPairs(ind);
+    displayPhoneNumberPairs(ind);
 }
 
 void displayFavContact(int ind){
     cout << favorites.at(ind)->firstName << " " << favorites.at(ind)->lastName << endl;
-    displayPhoneNumberPairs(ind);
-    cout << '\t'; displayFavPhoneNumberPairs(ind); cout << endl;
+    displayFavPhoneNumberPairs(ind);
 }
 
 //sort contact vector alphabetically
 void sortContacts(){
-    
+    sort(contacts.begin(), contacts.end(), compFunction);
 }
 
+bool compFunction(const Contact& cont1, const Contact& cont2)
+{
+    bool comp = false;
+    if(strcasecmp(cont1.firstName.c_str(), cont2.firstName.c_str()) > 0){
+        comp = false;
+    }
+    else if (strcasecmp(cont1.firstName.c_str(), cont2.firstName.c_str()) < 0){
+        comp = true;
+    }
+    else if(strcasecmp(cont1.firstName.c_str(), cont2.firstName.c_str()) == 0){
+        if ((cont1.lastName.c_str(), cont2.lastName.c_str()) > 0){
+            comp = false;
+        }
+        else if((cont1.lastName.c_str(), cont2.lastName.c_str()) < 0){
+            comp = true;
+        }
+        else{
+            comp = false;
+        }
+    }
+    return comp;
+}
+ 
 //rearange method given index 1 of contact and index 2 of insert
 void rearrangeFavorites(int ind1, int ind2){
-    
+    Contact *cptr = favorites.at(ind1);
+    favorites.erase(favorites.begin() + ind1);
+    favorites.insert(favorites.begin() + ind2, cptr);
 }
 
 // add contact from vector to favorites based on index
-bool addContactToFav(int ind){
+bool addContactToFavs(int ind){
     for (auto i = favorites.begin(); i != favorites.end(); i++)
         if ((contacts.at(ind).firstName == (*i)->firstName) && (contacts.at(ind).lastName == (*i)->lastName))
             return false;
+    contacts.at(ind).isFav = true;
     Contact* cptr = &contacts.at(ind);
     favorites.push_back(cptr);
     return true;
@@ -85,12 +111,11 @@ bool addContactToFav(int ind){
 
 //add name into new contact struct
 bool addContactToFull(string fname, string lname, bool fav){
-    Contact nContact = {fname, lname, fav};
+    Contact nContact = {fname, lname, fav, *new map<string, string>};
     contacts.push_back(nContact);
     if (fav){
-        addContactToFav((int)favorites.size() -1);
+        addContactToFavs((int)contacts.size()-1);
     }
-    sortContacts();
     return true;
 }
 
