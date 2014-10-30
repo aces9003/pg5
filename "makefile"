@@ -1,0 +1,11 @@
+CC=g++
+CFLAGS= -std=c++11 -pedantic -Wall -O
+ 
+pg5: pg5.o Contacts.o
+	$(CC) $(CFLAGS) -o pg5 pg5.o Contacts.o
+
+pg5.o: pg5.cpp Contacts.h
+	$(CC) $(CFLAGS) -c pg5.cpp Contacts.h Contacts.o Contacts.cpp Contacts.h
+
+clean:
+	rm -i *.o *.gch
